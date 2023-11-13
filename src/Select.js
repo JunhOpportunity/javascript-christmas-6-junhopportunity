@@ -16,7 +16,7 @@ class SelectDate {
   }
 
   #validateNumberRange(inputDate) {
-    if (inputDate < MAX_RANGE_DATE || inputDate > MIN_RANGE_DATE) {
+    if (inputDate > MAX_RANGE_DATE || inputDate < MIN_RANGE_DATE) {
       throw new Error(ERROR_DATE_VALIDATE);
     }
   }
@@ -71,14 +71,18 @@ class SelectMenu {
     });
   }
   #validateMenuNumber(separateMenu) {
-    separateMenu.map((menu) => {
-      if (menu[1] < 1) {
+    const sumMenuTotalNumber = separateMenu.reduce((acc, cur) => {
+      if (cur[1] < 1) {
         throw new Error(ERROR_MENU_VALIDATE);
       }
-      if (isNaN(menu[1])) {
+      if (isNaN(cur[1])) {
         throw new Error(ERROR_MENU_VALIDATE);
       }
-    });
+      return acc + +cur[1];
+    }, 0);
+    if (sumMenuTotalNumber > 20) {
+      throw new Error(ERROR_MENU_VALIDATE);
+    }
   }
   #validateDuplication(separateMenu) {
     const menuNames = separateMenu.map((menu) => {
