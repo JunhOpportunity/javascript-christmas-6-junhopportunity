@@ -1,5 +1,9 @@
 import { MENU } from "./constants/menu";
-import { ERROR_DATE_VALIDATE, ERROR_MENU_VALIDATE } from "./constants/messages";
+import {
+  ERROR_DATE_VALIDATE,
+  ERROR_MENU_VALIDATE,
+  ERROR_ORDER_ONLY_DRINK,
+} from "./constants/messages";
 import { MAX_RANGE_DATE, MIN_RANGE_DATE } from "./constants/standards";
 
 class SelectDate {
@@ -45,6 +49,7 @@ class SelectMenu {
     this.#validateDuplication(separateMenu);
     this.#validateMenuNumber(separateMenu);
     this.#validateMenuName(separateMenu);
+    this.#validateOnlyDrink(separateMenu);
   }
 
   #separateMenu(inputMenu) {
@@ -60,6 +65,10 @@ class SelectMenu {
       allMenuNames.push(...Object.keys(menu[1]));
     });
     return allMenuNames;
+  }
+
+  #getMenuNames(menu) {
+    return Object.keys(menu);
   }
 
   #validateMenuName(separateMenu) {
@@ -94,6 +103,18 @@ class SelectMenu {
       throw new Error(ERROR_MENU_VALIDATE);
     }
   }
+  #validateOnlyDrink(separateMenu) {
+    const menuNames = separateMenu.map((menu) => {
+      return menu[0];
+    });
+    const drikNames = this.#getMenuNames(MENU.DRINK);
+
+    const result = menuNames.filter((name) => !drikNames.includes(name));
+    if (result.length == 0) {
+      throw new Error(ERROR_ORDER_ONLY_DRINK);
+    }
+  }
+
   getValidatedMenu() {
     return this.#menu;
   }
