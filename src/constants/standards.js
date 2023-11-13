@@ -1,0 +1,4 @@
+const MIN_RANGE_DATE = 1;
+const MAX_RANGE_DATE = 31;
+
+export { MAX_RANGE_DATE, MIN_RANGE_DATE };
