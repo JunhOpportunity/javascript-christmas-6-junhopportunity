@@ -19,6 +19,7 @@ import {
   CRISTMAS_ADDITIONAL_DISCOUNT,
   CRISTMAS_BASIC_DISCOUNT,
   DAY_OF_WEEK_DISCOUNT,
+  SPECIAL_DISCOUNT_PRICE,
 } from "./constants/dicount";
 import { CONDITION_NOT_MET } from "./constants/messages";
 
@@ -80,7 +81,7 @@ class Benefit {
 
   #discountSpecialDay() {
     if (SPECIAL_DISCOUNT.includes(this.#date)) {
-      this.#specialDiscount += SPECIAL_DISCOUNT;
+      this.#specialDiscount += SPECIAL_DISCOUNT_PRICE;
     }
   }
 
