@@ -18,6 +18,31 @@ const OutputView = {
       ? Console.print("샴페인 1개")
       : Console.print("없음");
   },
+  printBenefitDetails(beforePayment, benefitDetails) {
+    Console.print("<혜택 내역>");
+    if (beforePayment < 10000) {
+      Console.print("없음");
+    } else {
+      Console.print(`
+크리스마스 디데이 할인: ${
+        benefitDetails.cristmasDiscount == 0
+          ? "없음"
+          : (-benefitDetails.cristmasDiscount).toLocaleString() + "원"
+      }
+${
+  benefitDetails.weekdayDiscount == 0
+    ? "주말 할인: " + (-benefitDetails.weekendDiscount).toLocaleString() + "원"
+    : "평일 할인: " + (-benefitDetails.weekdayDiscount).toLocaleString() + "원"
+}
+특별 할인: ${
+        benefitDetails.specialDiscount == 0
+          ? "없음"
+          : (-benefitDetails.specialDiscount).toLocaleString() + "원"
+      }
+증정 이벤트: ${beforePayment < 120000 ? "없음" : (-MENU.DRINK.샴페인).toLocaleString() + "원"}
+      `);
+    }
+  },
 };
 
 export default OutputView;
