@@ -83,7 +83,7 @@ ${GIFT_EVENT}${
   },
   printExpectedPayment(afterPayment) {
     Console.print(EXPECTED_PAYMENT);
-    Console.print(afterPayment + PRICE_UNIT);
+    Console.print(afterPayment.toLocaleString() + PRICE_UNIT);
   },
   printEventBedge(bedge) {
     Console.print(EVENT_BEDGE);
