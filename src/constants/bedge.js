@@ -1,0 +1,16 @@
+const MIN_STAR_BENEFIT = 5000;
+const MIN_TREE_BENEFIT = 10000;
+const MIN_SANTA_BENEFIT = 20000;
+
+const STAR_BEDGE = "별";
+const TREE_BEDGE = "트리";
+const SANTA_BEDGE = "산타";
+
+export {
+  MIN_STAR_BENEFIT,
+  MIN_TREE_BENEFIT,
+  MIN_SANTA_BENEFIT,
+  STAR_BEDGE,
+  TREE_BEDGE,
+  SANTA_BEDGE,
+};
