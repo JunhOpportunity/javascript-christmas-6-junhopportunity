@@ -120,8 +120,7 @@ class Benefit {
     }
   }
 
-  // 이름 변경
-  get() {
+  benefitRecipt() {
     this.#discountCristmasDday();
     this.#discountVisitWeekday();
     this.#discountVisitWeekend();

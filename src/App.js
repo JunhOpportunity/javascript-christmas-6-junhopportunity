@@ -8,7 +8,7 @@ class App {
     const menus = await InputView.readMenu();
 
     const benefit = new Benefit(date, menus);
-    const benefitRecipt = benefit.get();
+    const benefitRecipt = benefit.benefitRecipt();
 
     OutputView.printMenu(menus);
     OutputView.printTotalPaymentBeforeDiscount(benefitRecipt.beforePayment);
