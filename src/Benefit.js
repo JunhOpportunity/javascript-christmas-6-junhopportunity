@@ -13,6 +13,7 @@ import {
 import {
   CRISTMAS_ADDITIONAL_DISCOUNT,
   CRISTMAS_BASIC_DISCOUNT,
+  DAY_OF_WEEK_DISCOUNT,
 } from "./constants/dicount";
 
 class Benefit {
@@ -45,7 +46,7 @@ class Benefit {
     if (WEEKEND_DISCOUNT.includes(this.#date)) {
       this.#menus.map((menu) => {
         if (weekendMenu.includes(menu[0])) {
-          this.#weekdayDiscount = this.#weekdayDiscount + 2023 * menu[1];
+          this.#weekdayDiscount += DAY_OF_WEEK_DISCOUNT * menu[1];
         }
       });
     }
@@ -57,7 +58,7 @@ class Benefit {
     if (!WEEKEND_DISCOUNT.includes(this.#date)) {
       this.#menus.map((menu) => {
         if (weekdayMenu.includes(menu[0])) {
-          this.#weekendDiscount = this.#weekendDiscount + 2023 * menu[1];
+          this.#weekendDiscount += DAY_OF_WEEK_DISCOUNT * menu[1];
         }
       });
     }
