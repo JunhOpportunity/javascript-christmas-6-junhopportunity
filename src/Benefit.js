@@ -19,6 +19,7 @@ import {
   CRISTMAS_BASIC_DISCOUNT,
   DAY_OF_WEEK_DISCOUNT,
 } from "./constants/dicount";
+import { CONDITION_NOT_MET } from "./constants/messages";
 
 class Benefit {
   #beforePayment = 0;
@@ -72,7 +73,7 @@ class Benefit {
 
   #discountSpecialDay() {
     if (SPECIAL_DISCOUNT.includes(this.#date)) {
-      this.#specialDiscount = this.#specialDiscount + 1000;
+      this.#specialDiscount += SPECIAL_DISCOUNT;
     }
   }
 
@@ -99,7 +100,7 @@ class Benefit {
 
   #giveBedge(totalBenefit) {
     if (totalBenefit < MIN_STAR_BENEFIT) {
-      this.#bedge = "없음";
+      this.#bedge = CONDITION_NOT_MET;
     }
     if (totalBenefit >= MIN_STAR_BENEFIT && totalBenefit < MIN_TREE_BENEFIT) {
       this.#bedge = STAR_BEDGE;
