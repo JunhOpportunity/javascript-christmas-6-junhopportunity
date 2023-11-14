@@ -55,6 +55,10 @@ ${
     Console.print("<할인 후 예상 결제 금액>");
     Console.print(`${afterPayment}원`);
   },
+  printEventBedge(bedge) {
+    Console.print("<12월 이벤트 배지>");
+    Console.print(bedge);
+  },
 };
 
 export default OutputView;
