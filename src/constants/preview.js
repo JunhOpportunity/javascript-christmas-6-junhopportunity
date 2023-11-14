@@ -1,0 +1,31 @@
+const ORDER_MENU_MESSAGE = "<주문 메뉴>";
+const TOTAL_PAYMENT_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
+const GIFT_MENU = "<증정 메뉴>";
+const BENEFIT_DETAILS = "<혜택 내역>";
+const TOTAL_BENEFIT_PRICE = "<총혜택 금액>";
+const EXPECTED_PAYMENT = "<할인 후 예상 결제 금액>";
+const EVENT_BEDGE = "<12월 이벤트 배지>";
+
+const CRISTMAS_D_DAY_DISCOUNT = "크리스마스 디데이 할인";
+const WEEKEND_DISCOUNT = "주말 할인: ";
+const WEEKDAY_DISCOUNT = "평일 할인: ";
+const SPECIAL_DISCOUNT = "특별 할인: ";
+const GIFT_EVENT = "증정 이벤트: ";
+
+const GIFT_EVENT_PRODUCT = "샴페인 1개";
+
+export {
+  ORDER_MENU_MESSAGE,
+  TOTAL_PAYMENT_BEFORE_DISCOUNT,
+  GIFT_MENU,
+  BENEFIT_DETAILS,
+  TOTAL_BENEFIT_PRICE,
+  EXPECTED_PAYMENT,
+  EVENT_BEDGE,
+  CRISTMAS_D_DAY_DISCOUNT,
+  WEEKEND_DISCOUNT,
+  WEEKDAY_DISCOUNT,
+  SPECIAL_DISCOUNT,
+  GIFT_EVENT,
+  GIFT_EVENT_PRODUCT,
+};

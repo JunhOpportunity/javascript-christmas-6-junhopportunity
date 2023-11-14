@@ -1,62 +1,92 @@
 import { MENU } from "./constants/menu";
 import { Console } from "@woowacourse/mission-utils";
+import {
+  BENEFIT_DETAILS,
+  CRISTMAS_D_DAY_DISCOUNT,
+  EVENT_BEDGE,
+  EXPECTED_PAYMENT,
+  GIFT_EVENT,
+  GIFT_EVENT_PRODUCT,
+  GIFT_MENU,
+  ORDER_MENU_MESSAGE,
+  SPECIAL_DISCOUNT,
+  TOTAL_BENEFIT_PRICE,
+  TOTAL_PAYMENT_BEFORE_DISCOUNT,
+  WEEKDAY_DISCOUNT,
+  WEEKEND_DISCOUNT,
+} from "./constants/preview";
+import {
+  MIN_APPLICABLE_PRICE,
+  MIN_GIFT_MENU_APPLIED_PRICE,
+} from "./constants/standards";
+import { CONDITION_NOT_MET, PRICE_UNIT } from "./constants/messages";
 
 const OutputView = {
   printMenu(menus) {
-    Console.print("<주문 메뉴>");
+    Console.print(ORDER_MENU_MESSAGE);
     menus.map((menu) => {
       Console.print(`${menu[0]} ${menu[1]}개`);
     });
   },
   printTotalPaymentBeforeDiscount(beforePayment) {
-    Console.print("<할인 전 총주문 금액>");
-    Console.print(beforePayment.toLocaleString() + "원");
+    Console.print(TOTAL_PAYMENT_BEFORE_DISCOUNT);
+    Console.print(beforePayment.toLocaleString() + PRICE_UNIT);
   },
   printGiftMenu(beforePayment) {
-    Console.print("<증정 메뉴>");
-    beforePayment > 120000
-      ? Console.print("샴페인 1개")
-      : Console.print("없음");
+    Console.print(GIFT_MENU);
+    beforePayment > MIN_GIFT_MENU_APPLIED_PRICE
+      ? Console.print(GIFT_EVENT_PRODUCT)
+      : Console.print(CONDITION_NOT_MET);
   },
   printBenefitDetails(beforePayment, benefitDetails) {
-    Console.print("<혜택 내역>");
-    if (beforePayment < 10000) {
-      Console.print("없음");
+    Console.print(BENEFIT_DETAILS);
+    if (beforePayment < MIN_APPLICABLE_PRICE) {
+      Console.print(CONDITION_NOT_MET);
     } else {
       Console.print(`
-크리스마스 디데이 할인: ${
+${CRISTMAS_D_DAY_DISCOUNT}: ${
         benefitDetails.cristmasDiscount == 0
-          ? "없음"
-          : (-benefitDetails.cristmasDiscount).toLocaleString() + "원"
+          ? CONDITION_NOT_MET
+          : (-benefitDetails.cristmasDiscount).toLocaleString() + PRICE_UNIT
       }
 ${
   benefitDetails.weekdayDiscount == 0
-    ? "주말 할인: " + (-benefitDetails.weekendDiscount).toLocaleString() + "원"
-    : "평일 할인: " + (-benefitDetails.weekdayDiscount).toLocaleString() + "원"
+    ? WEEKEND_DISCOUNT +
+      (-benefitDetails.weekendDiscount).toLocaleString() +
+      PRICE_UNIT
+    : WEEKDAY_DISCOUNT +
+      (-benefitDetails.weekdayDiscount).toLocaleString() +
+      PRICE_UNIT
 }
-특별 할인: ${
+${SPECIAL_DISCOUNT}${
         benefitDetails.specialDiscount == 0
-          ? "없음"
-          : (-benefitDetails.specialDiscount).toLocaleString() + "원"
+          ? CONDITION_NOT_MET
+          : (-benefitDetails.specialDiscount).toLocaleString() + PRICE_UNIT
       }
-증정 이벤트: ${beforePayment < 120000 ? "없음" : (-MENU.DRINK.샴페인).toLocaleString() + "원"}
+${GIFT_EVENT}${
+        beforePayment < MIN_GIFT_MENU_APPLIED_PRICE
+          ? CONDITION_NOT_MET
+          : (-MENU.DRINK.샴페인).toLocaleString() + PRICE_UNIT
+      }
       `);
     }
   },
   printTotalBenefit(beforePayment, totalBenefit) {
-    Console.print("<총혜택 금액>");
+    Console.print(TOTAL_BENEFIT_PRICE);
     Console.print(
       `${
-        totalBenefit == 0 || beforePayment < 10000 ? "0원" : (-totalBenefit).toLocaleString() + "원"
+        beforePayment < MIN_APPLICABLE_PRICE
+          ? 0 + PRICE_UNIT
+          : (-totalBenefit).toLocaleString() + PRICE_UNIT
       }`
     );
   },
   printExpectedPayment(afterPayment) {
-    Console.print("<할인 후 예상 결제 금액>");
-    Console.print(`${afterPayment}원`);
+    Console.print(EXPECTED_PAYMENT);
+    Console.print(afterPayment + PRICE_UNIT);
   },
   printEventBedge(bedge) {
-    Console.print("<12월 이벤트 배지>");
+    Console.print(EVENT_BEDGE);
     Console.print(bedge);
   },
 };

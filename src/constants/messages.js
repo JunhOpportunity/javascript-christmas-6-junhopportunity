@@ -12,6 +12,8 @@ const READ_MENU_MESSAGE =
 
 const CONDITION_NOT_MET = "없음";
 
+const PRICE_UNIT = "원";
+
 export {
   ERROR_DATE_VALIDATE,
   ERROR_MENU_VALIDATE,
@@ -19,4 +21,5 @@ export {
   READ_DATE_MESSAGE,
   READ_MENU_MESSAGE,
   CONDITION_NOT_MET,
+  PRICE_UNIT,
 };
