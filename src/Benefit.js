@@ -10,6 +10,10 @@ import {
   STAR_BEDGE,
   TREE_BEDGE,
 } from "./constants/bedge";
+import {
+  CRISTMAS_ADDITIONAL_DISCOUNT,
+  CRISTMAS_BASIC_DISCOUNT,
+} from "./constants/dicount";
 
 class Benefit {
   #beforePayment = 0;
@@ -26,10 +30,12 @@ class Benefit {
     this.#menus = menus;
   }
 
-  // 크리스마스 디데이 할인
   #discountCristmasDday() {
     if (this.#date <= MAX_RANGE_DATE) {
-      this.#cristmasDiscount = this.#cristmasDiscount + 1000 + 100 * (this.#date - 1);
+      this.#cristmasDiscount =
+        this.#cristmasDiscount +
+        CRISTMAS_BASIC_DISCOUNT +
+        CRISTMAS_ADDITIONAL_DISCOUNT * (this.#date - 1);
     }
   }
 
