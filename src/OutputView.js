@@ -43,6 +43,14 @@ ${
       `);
     }
   },
+  printTotalBenefit(beforePayment, totalBenefit) {
+    Console.print("<총혜택 금액>");
+    Console.print(
+      `${
+        totalBenefit == 0 || beforePayment < 10000 ? "0원" : (-totalBenefit).toLocaleString() + "원"
+      }`
+    );
+  },
 };
 
 export default OutputView;
