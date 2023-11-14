@@ -3,6 +3,7 @@ import {
   INDEX_MENU_NAME,
   INDEX_MENU_PRICE,
   MAX_RANGE_DATE,
+  MIN_GIFT_MENU_APPLIED_PRICE,
 } from "./constants/standards";
 import { MENU } from "./constants/menu";
 import { WEEKEND_DISCOUNT } from "./constants/calendar";
@@ -122,7 +123,7 @@ class Benefit {
     this.#calculateTotalPayment();
     const totalDiscount = this.#calculateTotalDiscount();
     let totalBenefit = totalDiscount;
-    if (this.#beforePayment > 120000) {
+    if (this.#beforePayment > MIN_GIFT_MENU_APPLIED_PRICE) {
       totalBenefit += MENU.DRINK.샴페인;
     }
     this.#giveBedge(totalBenefit);
