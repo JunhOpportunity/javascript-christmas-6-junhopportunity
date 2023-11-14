@@ -51,6 +51,10 @@ ${
       }`
     );
   },
+  printExpectedPayment(afterPayment) {
+    Console.print("<할인 후 예상 결제 금액>");
+    Console.print(`${afterPayment}원`);
+  },
 };
 
 export default OutputView;
