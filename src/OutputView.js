@@ -12,6 +12,12 @@ const OutputView = {
     Console.print("<할인 전 총주문 금액>");
     Console.print(beforePayment.toLocaleString() + "원");
   },
+  printGiftMenu(beforePayment) {
+    Console.print("<증정 메뉴>");
+    beforePayment > 120000
+      ? Console.print("샴페인 1개")
+      : Console.print("없음");
+  },
 };
 
 export default OutputView;
