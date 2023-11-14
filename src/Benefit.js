@@ -46,29 +46,35 @@ class Benefit {
     }
   }
 
-  // depth 리팩토링
+  #calculateDiscountPriceOfDay(menus, discountMenu) {
+    let discountPrice = 0;
+
+    menus.forEach((menu) => {
+      if (discountMenu.includes(menu[INDEX_MENU_NAME])) {
+        discountPrice += DAY_OF_WEEK_DISCOUNT * menu[INDEX_MENU_PRICE];
+      }
+    });
+
+    return discountPrice;
+  }
+
   #discountVisitWeekend() {
     const weekendMenu = Object.keys(MENU.MAIN);
     if (WEEKEND_DISCOUNT.includes(this.#date)) {
-      this.#menus.map((menu) => {
-        if (weekendMenu.includes(menu[INDEX_MENU_NAME])) {
-          this.#weekdayDiscount +=
-            DAY_OF_WEEK_DISCOUNT * menu[INDEX_MENU_PRICE];
-        }
-      });
+      this.#weekdayDiscount += this.#calculateDiscountPriceOfDay(
+        this.#menus,
+        weekendMenu
+      );
     }
   }
 
-  // depth 리팩토링
   #discountVisitWeekday() {
     const weekdayMenu = Object.keys(MENU.DESSERT);
     if (!WEEKEND_DISCOUNT.includes(this.#date)) {
-      this.#menus.map((menu) => {
-        if (weekdayMenu.includes(menu[INDEX_MENU_NAME])) {
-          this.#weekendDiscount +=
-            DAY_OF_WEEK_DISCOUNT * menu[INDEX_MENU_PRICE];
-        }
-      });
+      this.#weekendDiscount += this.#calculateDiscountPriceOfDay(
+        this.#menus,
+        weekdayMenu
+      );
     }
   }
 
