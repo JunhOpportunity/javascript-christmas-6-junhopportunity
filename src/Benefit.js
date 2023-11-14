@@ -1,5 +1,9 @@
 import { SPECIAL_DISCOUNT } from "./constants/calendar";
-import { MAX_RANGE_DATE } from "./constants/standards";
+import {
+  INDEX_MENU_NAME,
+  INDEX_MENU_PRICE,
+  MAX_RANGE_DATE,
+} from "./constants/standards";
 import { MENU } from "./constants/menu";
 import { WEEKEND_DISCOUNT } from "./constants/calendar";
 import {
@@ -45,8 +49,9 @@ class Benefit {
     const weekendMenu = Object.keys(MENU.MAIN);
     if (WEEKEND_DISCOUNT.includes(this.#date)) {
       this.#menus.map((menu) => {
-        if (weekendMenu.includes(menu[0])) {
-          this.#weekdayDiscount += DAY_OF_WEEK_DISCOUNT * menu[1];
+        if (weekendMenu.includes(menu[INDEX_MENU_NAME])) {
+          this.#weekdayDiscount +=
+            DAY_OF_WEEK_DISCOUNT * menu[INDEX_MENU_PRICE];
         }
       });
     }
@@ -57,8 +62,9 @@ class Benefit {
     const weekdayMenu = Object.keys(MENU.DESSERT);
     if (!WEEKEND_DISCOUNT.includes(this.#date)) {
       this.#menus.map((menu) => {
-        if (weekdayMenu.includes(menu[0])) {
-          this.#weekendDiscount += DAY_OF_WEEK_DISCOUNT * menu[1];
+        if (weekdayMenu.includes(menu[INDEX_MENU_NAME])) {
+          this.#weekendDiscount +=
+            DAY_OF_WEEK_DISCOUNT * menu[INDEX_MENU_PRICE];
         }
       });
     }
