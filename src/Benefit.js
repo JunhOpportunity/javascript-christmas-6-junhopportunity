@@ -62,7 +62,7 @@ class Benefit {
   #discountVisitWeekend() {
     const weekendMenu = Object.keys(MENU.MAIN);
     if (WEEKEND_DISCOUNT.includes(this.#date)) {
-      this.#weekdayDiscount += this.#calculateDiscountPriceOfDay(
+      this.#weekendDiscount += this.#calculateDiscountPriceOfDay(
         this.#menus,
         weekendMenu
       );
@@ -72,7 +72,7 @@ class Benefit {
   #discountVisitWeekday() {
     const weekdayMenu = Object.keys(MENU.DESSERT);
     if (!WEEKEND_DISCOUNT.includes(this.#date)) {
-      this.#weekendDiscount += this.#calculateDiscountPriceOfDay(
+      this.#weekdayDiscount += this.#calculateDiscountPriceOfDay(
         this.#menus,
         weekdayMenu
       );
