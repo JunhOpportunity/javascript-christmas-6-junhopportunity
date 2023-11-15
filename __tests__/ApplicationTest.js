@@ -72,7 +72,8 @@ describe("기능 테스트", () => {
 describe("예외 테스트", () => {
   test("날짜 예외 테스트", async () => {
     // given
-    const INVALID_DATE_MESSAGE = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+    const INVALID_DATE_MESSAGE =
+      "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
     const INPUTS_TO_END = ["1", "해산물파스타-2"];
     const logSpy = getLogSpy();
     mockQuestions(["a", ...INPUTS_TO_END]);
@@ -82,12 +83,15 @@ describe("예외 테스트", () => {
     await app.run();
 
     // then
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(INVALID_DATE_MESSAGE));
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(INVALID_DATE_MESSAGE)
+    );
   });
 
   test("주문 예외 테스트", async () => {
     // given
-    const INVALID_ORDER_MESSAGE = "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
+    const INVALID_ORDER_MESSAGE =
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.";
     const INPUTS_TO_END = ["해산물파스타-2"];
     const logSpy = getLogSpy();
     mockQuestions(["3", "제로콜라-a", ...INPUTS_TO_END]);
@@ -97,6 +101,67 @@ describe("예외 테스트", () => {
     await app.run();
 
     // then
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(INVALID_ORDER_MESSAGE));
+    expect(logSpy).toHaveBeenCalledWith(
+      expect.stringContaining(INVALID_ORDER_MESSAGE)
+    );
+  });
+
+  test("날짜와 메뉴 재입력 테스트", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions([
+      "-4",
+      "3",
+      "해산물파스타-0,제로콜라-2",
+      "티본스테이크-1,레드와인-1",
+    ]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = [
+      "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!",
+      "티본스테이크 1개",
+      "레드와인 1개",
+    ];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
+
+  test("주문 메뉴 출력 테스트", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["5", "크리스마스파스타-2,초코케이크-3,레드와인-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = ["크리스마스파스타 2개", "초코케이크 3개", "레드와인 1개"];
+
+    expectLogContains(getOutput(logSpy), expected);
+  });
+
+  test("혜택 내역 출력 테스트", async () => {
+    // given
+    const logSpy = getLogSpy();
+    mockQuestions(["25", "해산물파스타-2,초코케이크-3,레드와인-1"]);
+
+    // when
+    const app = new App();
+    await app.run();
+
+    // then
+    const expected = [
+      "크리스마스 디데이 할인: -3,400원",
+      "평일 할인: -6,069원",
+      "특별 할인: -1,000원",
+      "증정 이벤트: -25,000원",
+    ];
+
+    expectLogContains(getOutput(logSpy), expected);
   });
 });
