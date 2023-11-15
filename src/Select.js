@@ -31,7 +31,7 @@ class SelectDate {
     }
   }
 
-  getValidatedDate() {
+  confirmedDate() {
     return this.#date;
   }
 }
@@ -115,7 +115,7 @@ class SelectMenu {
     }
   }
 
-  getValidatedMenu() {
+  confirmedMenu() {
     return this.#menu;
   }
 }

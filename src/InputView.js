@@ -13,7 +13,7 @@ const InputView = {
         Console.print(error.message);
       }
     }
-    return date.getValidatedDate();
+    return date.confirmedDate();
   },
 
   async readMenu() {
@@ -26,7 +26,7 @@ const InputView = {
         Console.print(error.message);
       }
     }
-    return menu.getValidatedMenu();
+    return menu.confirmedMenu();
   },
 };
 
