@@ -91,8 +91,8 @@ class Benefit {
       .flat(2);
 
     this.#menus.forEach((menu) => {
-      const menuIndex = menuAndPrice.indexOf(menu[0]);
-      this.#beforePayment += menuAndPrice[menuIndex + 1] * menu[1];
+      const menuIndex = menuAndPrice.indexOf(menu[INDEX_MENU_NAME]);
+      this.#beforePayment += menuAndPrice[menuIndex + 1] * menu[INDEX_MENU_PRICE];
     });
   }
 

@@ -4,7 +4,16 @@ import {
   ERROR_MENU_VALIDATE,
   ERROR_ORDER_ONLY_DRINK,
 } from "./constants/messages";
-import { MAX_RANGE_DATE, MIN_RANGE_DATE } from "./constants/standards";
+import {
+  FIRST_SEPARATE_TOKEN,
+  INDEX_MENU_NAME,
+  INDEX_MENU_PRICE,
+  MAX_ORDER_NUMBER,
+  MAX_RANGE_DATE,
+  MIN_ORDER_NUMBER,
+  MIN_RANGE_DATE,
+  SECOND_SPPARATE_TOKEN,
+} from "./constants/standards";
 
 class SelectDate {
   #date;
@@ -53,8 +62,8 @@ class SelectMenu {
   }
 
   #separateMenu(inputMenu) {
-    const separateMenu = inputMenu.split(",").map((menu) => {
-      return menu.split("-");
+    const separateMenu = inputMenu.split(FIRST_SEPARATE_TOKEN).map((menu) => {
+      return menu.split(SECOND_SPPARATE_TOKEN);
     });
     return separateMenu;
   }
@@ -81,21 +90,21 @@ class SelectMenu {
   }
   #validateMenuNumber(separateMenu) {
     const sumMenuTotalNumber = separateMenu.reduce((acc, cur) => {
-      if (cur[1] < 1) {
+      if (cur[INDEX_MENU_PRICE] < MIN_ORDER_NUMBER) {
         throw new Error(ERROR_MENU_VALIDATE);
       }
-      if (isNaN(cur[1])) {
+      if (isNaN(cur[INDEX_MENU_PRICE])) {
         throw new Error(ERROR_MENU_VALIDATE);
       }
-      return acc + +cur[1];
+      return acc + +cur[INDEX_MENU_PRICE];
     }, 0);
-    if (sumMenuTotalNumber > 20) {
+    if (sumMenuTotalNumber > MAX_ORDER_NUMBER) {
       throw new Error(ERROR_MENU_VALIDATE);
     }
   }
   #validateDuplication(separateMenu) {
     const menuNames = separateMenu.map((menu) => {
-      return menu[0];
+      return menu[INDEX_MENU_NAME];
     });
 
     const validatedMenuNames = new Set(menuNames);
@@ -105,7 +114,7 @@ class SelectMenu {
   }
   #validateOnlyDrink(separateMenu) {
     const menuNames = separateMenu.map((menu) => {
-      return menu[0];
+      return menu[INDEX_MENU_NAME];
     });
     const drikNames = this.#getMenuNames(MENU.DRINK);
 
