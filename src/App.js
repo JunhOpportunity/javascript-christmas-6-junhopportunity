@@ -10,6 +10,7 @@ class App {
     const benefit = new Benefit(date, menus);
     const benefitRecipt = benefit.benefitRecipt();
 
+    OutputView.printPreviewDate(date);
     OutputView.printMenu(menus);
     OutputView.printTotalPaymentBeforeDiscount(benefitRecipt.beforePayment);
     OutputView.printGiftMenu(benefitRecipt.beforePayment);

@@ -1,3 +1,7 @@
+const PREVIEW_EVENT_MONTH = "12월";
+const PREVIEW_EVENT_MESSAGE =
+  "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+
 const ORDER_MENU_MESSAGE = "<주문 메뉴>";
 const TOTAL_PAYMENT_BEFORE_DISCOUNT = "<할인 전 총주문 금액>";
 const GIFT_MENU = "<증정 메뉴>";
@@ -15,6 +19,8 @@ const GIFT_EVENT = "증정 이벤트: ";
 const GIFT_EVENT_PRODUCT = "샴페인 1개";
 
 export {
+  PREVIEW_EVENT_MONTH,
+  PREVIEW_EVENT_MESSAGE,
   ORDER_MENU_MESSAGE,
   TOTAL_PAYMENT_BEFORE_DISCOUNT,
   GIFT_MENU,

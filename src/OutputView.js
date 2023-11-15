@@ -9,6 +9,8 @@ import {
   GIFT_EVENT_PRODUCT,
   GIFT_MENU,
   ORDER_MENU_MESSAGE,
+  PREVIEW_EVENT_MESSAGE,
+  PREVIEW_EVENT_MONTH,
   SPECIAL_DISCOUNT,
   TOTAL_BENEFIT_PRICE,
   TOTAL_PAYMENT_BEFORE_DISCOUNT,
@@ -22,6 +24,9 @@ import {
 import { CONDITION_NOT_MET, PRICE_UNIT } from "./constants/messages";
 
 const OutputView = {
+  printPreviewDate(date) {
+    Console.print(`${PREVIEW_EVENT_MONTH} ${date}${PREVIEW_EVENT_MESSAGE}`);
+  },
   printMenu(menus) {
     Console.print(ORDER_MENU_MESSAGE);
     menus.map((menu) => {
